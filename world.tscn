@@ -439,7 +439,7 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 7, 65536, 65536, 8, 1, 131072, 7,
 layer_1/tile_data = PackedInt32Array(327680, 65536, 5, 327681, 131072, 5, 327682, 131072, 5, 327683, 131072, 5, 327684, 131072, 5, 327685, 131072, 5, 327686, 131072, 5, 327687, 131072, 5, 327688, 131072, 5, 327689, 196608, 5)
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(95, 101)
+position = Vector2(154, 64)
 collision_mask = 2
 script = ExtResource("1_xrfun")
 metadata/_edit_group_ = true
@@ -470,3 +470,7 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 visible = false
 shape = SubResource("RectangleShape2D_84d2o")
+
+[node name="JumpBufferTimer" type="Timer" parent="Player"]
+wait_time = 0.1
+one_shot = true
