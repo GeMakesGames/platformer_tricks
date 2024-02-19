@@ -19,6 +19,7 @@ func physics_update(delta):
 	current_state_node.physics_update(delta)
 	
 func change_state(next_state):
+	print("%s -> %s" % [current_state, next_state])
 	if current_state:
 		current_state_node.exit()
 	previous_state = current_state

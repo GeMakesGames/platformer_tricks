@@ -5,6 +5,7 @@ var variable_jump_height
 func enter():
 	obj.play("jump")
 	obj.velocity.y = Player.JUMP_SPEED
+	obj.velocity.x += Player.MAX_SPEED * obj.get_input_x()
 	variable_jump_height = false
 	obj.jump_buffer_timer.stop()
 

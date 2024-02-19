@@ -5,7 +5,11 @@ const ACCELERATION = 1000.0
 const MAX_SPEED = 90.0
 const JUMP_SPEED = -300.0
 
-const GRAVITY = 980
+const GRAVITY = 900
+const FALL_GRAVITY = 450
+const TERMINAL_VELOCITY = 180
+
+const AIR_MULTIPLIER = 0.5
 
 @onready var fsm = $FSM
 @onready var ap = $AnimationPlayer
@@ -27,8 +31,9 @@ func sync_direction():
 	s.flip_h = input_x == -1
 
 func update_velocity(delta):
-	velocity.y += GRAVITY * delta
-	velocity.x = move_toward(velocity.x, get_input_x() * MAX_SPEED, ACCELERATION * delta)
+	velocity.y = move_toward(velocity.y, TERMINAL_VELOCITY, (GRAVITY if fsm.current_state == "jump" else FALL_GRAVITY) * delta)
+	velocity.x = move_toward(velocity.x, get_input_x() * MAX_SPEED, (1 if is_on_floor() else AIR_MULTIPLIER) * ACCELERATION * delta)
+	print("player velocity: %s" % velocity)
 
 func play(anim):
 	ap.play(anim)
